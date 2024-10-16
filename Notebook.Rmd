@@ -1,0 +1,32 @@
+---
+title: "MaAsLin2 Analysis Code for \"Gut pathobiont enrichment observed in a population predisposed to dementia, type 2 diabetics of Mexican descent living in South Texas\" by Matz et al."
+output: html_notebook
+---
+
+First, install MaAsLin2 according to the instructions at https://huttenhower.sph.harvard.edu/maaslin/. We used MaAsLin2 version 1.14.1.
+
+Next, load the library:
+
+```{r}
+library(Maaslin2)
+```
+
+The data and metadata files are in the repository. We'll load them both as dataframes.
+
+```{r}
+data = read.table(file = "TAB ASV_No Rarefaction ASVs from MJ format input LefSe.tsv", sep = "\t", row.names = 1, header = TRUE)
+data
+```
+
+```{r}
+metadata = read.table(file = "TAB IRB Human Metadata.tsv", sep = "\t", row.names = 1, header = TRUE)
+metadata
+```
+
+```{r}
+fit_data = Maaslin2(
+    input_data = data, 
+    input_metadata = metadata, 
+    output = "output", 
+    fixed_effects = c("diabetes.status"))
+```
