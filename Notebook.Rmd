@@ -23,6 +23,8 @@ metadata = read.table(file = "TAB IRB Human Metadata.tsv", sep = "\t", row.names
 metadata
 ```
 
+Finally, we run MaAsLin2, using the default options.
+
 ```{r}
 fit_data = Maaslin2(
     input_data = data, 
